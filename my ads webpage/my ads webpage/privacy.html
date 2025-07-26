@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy - Jutech</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <script>
+  // Fade-out effect on link clicks
+  document.querySelectorAll('a').forEach(link => {
+    if (link.href && !link.href.startsWith('#') && link.target !== '_blank') {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const url = this.href;
+        document.body.classList.add('fade-out');
+        setTimeout(() => {
+          window.location.href = url;
+        }, 400);
+      });
+    }
+  });
+
+  // Optional: on load, fade in smoothly
+  window.addEventListener('pageshow', () => {
+    document.body.classList.remove('fade-out');
+  });
+</script>
+
+
+  <header>
+    <h1>🔒 Privacy Policy</h1>
+  </header>
+
+  <main>
+    <p>We respect your privacy. Jutech does not collect or share personal data. Your activity on this site remains private.</p>
+    <p>We use cookies solely for performance improvements.</p>
+
+    <br>
+    <a href="index.html" class="back-button">← Back to Menu</a>
+  </main>
+
+</body>
+</html>

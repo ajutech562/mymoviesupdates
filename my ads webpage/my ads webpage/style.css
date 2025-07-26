@@ -1,0 +1,314 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #eee;
+  min-height: 100vh;
+  background: linear-gradient(270deg, #1db954, #121212, #181818, #1db954);
+  background-size: 800% 800%;
+  animation: gradientBG 20s ease infinite;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Gradient animation */
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+/* Overlay for better contrast */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Header */
+header {
+  position: relative;
+  z-index: 10;
+  background: rgba(18, 18, 18, 0.85);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+
+header h1 {
+  font-size: 1.8rem;
+  user-select: none;
+}
+
+.menu-toggle {
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #1db954;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.menu-toggle:hover {
+  color: #1fff70;
+}
+
+/* Slide-out menu */
+.menu-panel {
+  position: fixed;
+  top: 0;
+  left: -260px; /* hidden by default */
+  width: 260px;
+  height: 100vh;
+  background: rgba(24, 24, 24, 0.95);
+  box-shadow: 2px 0 8px rgba(0,0,0,0.8);
+  padding-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: left 0.3s ease;
+  z-index: 15;
+}
+
+.menu-panel.active {
+  left: 0;
+}
+
+.menu-link {
+  padding: 1rem 2rem;
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, color 0.3s ease;
+  user-select: none;
+}
+
+.menu-link:hover,
+.menu-link.active {
+  background: #1db954;
+  color: #121212;
+}
+
+/* Main content container */
+main, section {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: rgba(18,18,18,0.85);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  position: relative;
+  z-index: 10;
+}
+
+/* Movie container for home page */
+.movie-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.movie-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: nowrap; /* prevent wrapping so all stay in one row */
+  justify-content: center;
+  align-items: flex-start; /* align cards top */
+  margin: 2rem auto;
+  max-width: 900px;
+  padding: 0 1rem; /* optional horizontal padding */
+}
+
+/* Responsive: allow wrapping on small screens */
+@media (max-width: 768px) {
+  .movie-container {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
+
+.movie-card {
+  background: rgba(18, 18, 18, 0.85);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 260px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #eee;
+  transition: transform 0.3s ease;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.info h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.3rem;
+}
+
+.info p {
+  font-size: 1rem;
+  margin-bottom: 0.8rem;
+  color: #a0a0a0;
+}
+
+.info button {
+  background-color: #1db954;
+  border: none;
+  color: #121212;
+  padding: 0.5rem 1.2rem;
+  border-radius: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.info button:hover {
+  background-color: #17c34f;
+}
+
+/* Articles */
+.articles h2 {
+  color: #1db954;
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+.footer {
+  background: rgba(18, 18, 18, 0.85);
+  color: #ccc;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.7);
+  position: relative;
+  z-index: 10;
+}
+
+.footer-buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-buttons button {
+  background-color: #1db954;
+  border: none;
+  color: #121212;
+  padding: 0.5rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.footer-buttons button:hover {
+  background-color: #17c34f;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .movie-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .menu-panel {
+    width: 70%;
+  }
+}
+
+.menu-panel {
+  position: absolute; /* instead of fixed */
+  top: 0;
+  left: -260px; /* hidden by default */
+  height: auto; /* Let it grow */
+  min-height: 100vh; /* At least viewport height */
+  
+}
+.back-button {
+  display: inline-block;
+  padding: 0.6rem 1.5rem;
+  background-color: #1db954;
+  color: #121212;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.back-button:hover {
+  background-color: #17c34f;
+  transform: scale(1.05);
+}
+/*anmation for all page */
+/* Page transition fade */
+body {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+}
+
+body.fade-out {
+  opacity: 0;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #eee;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+
+  /* Background sliding image */
+  background-image: url('New Project.jpg'); /* <-- Replace with your image path */
+  background-repeat: repeat-x;
+  background-size: cover; /* Or use 'contain' if you want whole image visible */
+  animation: slideBackground 20s linear infinite;
+}
+
+/* Overlay for contrast */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Sliding animation */
+@keyframes slideBackground {
+  0% {
+    background-position: 0 50%;
+  }
+  100% {
+    background-position: -100% 50%;
+  }
+}
