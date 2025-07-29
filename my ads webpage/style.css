@@ -163,6 +163,7 @@ main, section {
   display: block;
 }
 
+
 .info {
   padding: 1rem;
   text-align: center;
@@ -289,7 +290,7 @@ body {
   /* Background sliding image */
   background-image: url('New Project.jpg'); /* <-- Replace with your image path */
   background-repeat: repeat-x;
-  background-size: cover; /* Or use 'contain' if you want whole image visible */
+  background-size:8000px; /* Or use 'contain' if you want whole image visible */
   animation: slideBackground 20s linear infinite;
 }
 
