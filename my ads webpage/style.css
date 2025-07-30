@@ -11,13 +11,10 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-
-  /* Background image & animation */
   background-image: url('New Project.png');
   background-repeat: repeat-x;
   background-size: 8000px;
   animation: slideBackground 20s linear infinite;
-
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
@@ -26,7 +23,6 @@ body.fade-out {
   opacity: 0;
 }
 
-/* Background overlay */
 body::before {
   content: "";
   position: fixed;
@@ -36,13 +32,11 @@ body::before {
   z-index: 0;
 }
 
-/* Sliding animation */
 @keyframes slideBackground {
   0% { background-position: 0 50%; }
   100% { background-position: -100% 50%; }
 }
 
-/* Header */
 header {
   position: relative;
   z-index: 10;
@@ -71,37 +65,17 @@ header h1 {
 .menu-toggle:hover {
   color: #1fff70;
 }
-/* Slide-out menu with scroll */
+
 .menu-panel {
   position: fixed;
   top: 0;
   left: -260px;
   width: 260px;
-  height: 100vh; /* Ensure full viewport height */
-  overflow-y: auto; /* Enable vertical scroll */
-  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  height: 100vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   background: rgba(24, 24, 24, 0.95);
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.8);
-  padding-top: 4rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  transition: left 0.3s ease;
-  z-index: 15;
-}
-
-
-
-
-/* Slide-out menu */
-.menu-panel {
-  position: fixed;
-  top: 0;
-  left: -260px;
-  width: 260px;
-  min-height: 100vh;
-  background: rgba(24, 24, 24, 0.95);
-  box-shadow: 2px 0 8px rgba(0,0,0,0.8);
   padding-top: 4rem;
   display: flex;
   flex-direction: column;
@@ -130,7 +104,6 @@ header h1 {
   color: #121212;
 }
 
-/* Main content */
 main, section {
   max-width: 900px;
   margin: 2rem auto;
@@ -142,7 +115,6 @@ main, section {
   z-index: 10;
 }
 
-/* Movie container */
 .movie-container {
   display: flex;
   gap: 1.5rem;
@@ -153,12 +125,11 @@ main, section {
   padding: 0 1rem;
 }
 
-/* Movie card */
 .movie-card {
   background: rgba(18, 18, 18, 0.85);
   border-radius: 8px;
   overflow: hidden;
-  width: clamp(200px, 30vw, 260px);
+  width: clamp(180px, 45%, 260px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
@@ -177,7 +148,6 @@ main, section {
   display: block;
 }
 
-/* Info inside cards */
 .info {
   padding: 1rem;
   text-align: center;
@@ -209,13 +179,11 @@ main, section {
   background-color: #17c34f;
 }
 
-/* Articles */
 .articles h2 {
   color: #1db954;
   margin-bottom: 1rem;
 }
 
-/* Footer */
 .footer {
   background: rgba(18, 18, 18, 0.85);
   color: #ccc;
@@ -249,7 +217,6 @@ main, section {
   background-color: #17c34f;
 }
 
-/* Back button */
 .back-button {
   display: inline-block;
   padding: 0.6rem 1.5rem;
@@ -268,7 +235,17 @@ main, section {
 }
 
 /* Responsive media queries */
+@media (max-width: 1024px) {
+  .movie-card {
+    width: 45%;
+  }
+}
+
 @media (max-width: 768px) {
+  header h1 {
+    font-size: 1.5rem;
+  }
+
   .menu-panel {
     width: 70%;
   }
@@ -276,5 +253,25 @@ main, section {
   .movie-container {
     flex-direction: column;
     align-items: center;
+  }
+
+  .movie-card {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-toggle {
+    font-size: 1.8rem;
+  }
+
+  .info button {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .footer-buttons {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
