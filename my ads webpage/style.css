@@ -129,13 +129,15 @@ main, section {
   background: rgba(18, 18, 18, 0.85);
   border-radius: 8px;
   overflow: hidden;
-  width: clamp(180px, 45%, 260px);
+  width: 100%;
+  max-width: 260px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #eee;
   transition: transform 0.3s ease;
+  margin: 0 auto;
 }
 
 .movie-card:hover {
@@ -145,7 +147,10 @@ main, section {
 .movie-card img {
   width: 100%;
   height: auto;
+  max-height: 400px;
+  object-fit: cover;
   display: block;
+  border-radius: 8px 8px 0 0;
 }
 
 .info {
@@ -237,7 +242,7 @@ main, section {
 /* Responsive media queries */
 @media (max-width: 1024px) {
   .movie-card {
-    width: 45%;
+    max-width: 45%;
   }
 }
 
@@ -256,7 +261,7 @@ main, section {
   }
 
   .movie-card {
-    width: 90%;
+    max-width: 90%;
   }
 }
 
