@@ -280,3 +280,39 @@ main, section {
     gap: 0.5rem;
   }
 }
+/* Make all images responsive */
+img {
+  max-width: 100%;   /* Image width won't exceed its container */
+  height: auto;      /* Keep aspect ratio */
+  display: block;    /* Remove inline gap/spacing */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+/* For the article images container, center and limit max width */
+.article-img {
+  max-width: 750px;  /* Matches your image width */
+  margin: 1rem auto; /* Center horizontally with vertical margin */
+  padding: 0 1rem;   /* Small horizontal padding on small screens */
+}
+
+/* For movie-card images */
+.movie-card img {
+  width: 100%;       /* Fill card width */
+  height: auto;      /* Maintain aspect ratio */
+  max-height: 400px; /* Prevent overly tall images */
+  object-fit: cover; /* Crop nicely if needed */
+  border-radius: 8px 8px 0 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .article-img {
+    max-width: 100%; /* Use full width on small screens */
+    padding: 0 1rem;
+  }
+
+  .movie-card {
+    max-width: 90%; /* Movie cards take most screen width on phones */
+    margin: 1rem auto;
+  }
+}
