@@ -37,10 +37,12 @@ body::before {
   100% { background-position: -100% 50%; }
 }
 
+/* Header */
 header {
   position: relative;
   z-index: 10;
   background: rgba(18, 18, 18, 0.85);
+  color: #fff;
   padding: 1rem 2rem;
   display: flex;
   justify-content: space-between;
@@ -66,6 +68,7 @@ header h1 {
   color: #1fff70;
 }
 
+/* Menu Panel */
 .menu-panel {
   position: fixed;
   top: 0;
@@ -73,7 +76,6 @@ header h1 {
   width: 260px;
   height: 100vh;
   overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   background: rgba(24, 24, 24, 0.95);
   box-shadow: 2px 0 8px rgba(0, 0, 0, 0.8);
   padding-top: 4rem;
@@ -104,6 +106,7 @@ header h1 {
   color: #121212;
 }
 
+/* Layout Containers */
 main, section {
   max-width: 900px;
   margin: 2rem auto;
@@ -125,6 +128,7 @@ main, section {
   padding: 0 1rem;
 }
 
+/* Movie Cards */
 .movie-card {
   background: rgba(18, 18, 18, 0.85);
   border-radius: 8px;
@@ -137,7 +141,6 @@ main, section {
   align-items: center;
   color: #eee;
   transition: transform 0.3s ease;
-  margin: 0 auto;
 }
 
 .movie-card:hover {
@@ -149,7 +152,6 @@ main, section {
   height: auto;
   max-height: 400px;
   object-fit: cover;
-  display: block;
   border-radius: 8px 8px 0 0;
 }
 
@@ -184,11 +186,19 @@ main, section {
   background-color: #17c34f;
 }
 
+/* Articles */
 .articles h2 {
   color: #1db954;
   margin-bottom: 1rem;
 }
 
+.article-img {
+  max-width: 750px;
+  margin: 1rem auto;
+  padding: 0 1rem;
+}
+
+/* Footer */
 .footer {
   background: rgba(18, 18, 18, 0.85);
   color: #ccc;
@@ -222,6 +232,7 @@ main, section {
   background-color: #17c34f;
 }
 
+/* Back Button */
 .back-button {
   display: inline-block;
   padding: 0.6rem 1.5rem;
@@ -239,7 +250,130 @@ main, section {
   transform: scale(1.05);
 }
 
-/* Responsive media queries */
+/* Discussion Section */
+.discussion-section {
+  background-color: #140e0e;
+  color: #eee;
+  padding: 20px;
+  margin: 30px auto;
+  max-width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.1);
+}
+
+.discussion-section h2,
+.discussion-section h3 {
+  margin-bottom: 15px;
+  color: #ffd700;
+  font-weight: 700;
+}
+
+.rating-container {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.star {
+  background: none;
+  border: none;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.star:hover,
+.star:focus {
+  color: #ffd700;
+  outline: 2px solid #ffd700;
+  border-radius: 4px;
+}
+
+.star.selected,
+.star[aria-checked="true"] {
+  color: #ffd700;
+  text-shadow: 0 0 5px #ffd700;
+}
+
+.rating-result {
+  margin-top: 8px;
+  font-style: italic;
+  color: #ccc;
+}
+
+/* Comment Form */
+.comment-form-container {
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+#comment-form input[type="text"],
+#comment-form textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+  resize: vertical;
+  background-color: #333;
+  color: #eee;
+}
+
+#comment-form button {
+  background-color: #ffd700;
+  color: #222;
+  border: none;
+  padding: 10px 18px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#comment-form button:hover,
+#comment-form button:focus {
+  background-color: #e6c200;
+}
+
+/* Comments List */
+.comments-list {
+  max-width: 600px;
+  margin: 2rem auto 0;
+}
+
+.comments-list ul {
+  list-style: none;
+  padding-left: 0;
+  max-height: 250px;
+  overflow-y: auto;
+  border-top: 1px solid #444;
+  margin-top: 10px;
+}
+
+.comments-list li {
+  background: #333;
+  padding: 10px 15px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  word-wrap: break-word;
+}
+
+.comments-list li strong {
+  color: #ffd700;
+}
+
+.comments-list li p {
+  margin: 5px 0 0;
+}
+
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .movie-card {
     max-width: 45%;
@@ -263,56 +397,34 @@ main, section {
   .movie-card {
     max-width: 90%;
   }
-}
 
-@media (max-width: 480px) {
-  .menu-toggle {
-    font-size: 1.8rem;
-  }
-
-  .info button {
-    font-size: 0.9rem;
-    padding: 0.4rem 1rem;
+  .article-img {
+    max-width: 100%;
+    padding: 0 1rem;
   }
 
   .footer-buttons {
     flex-direction: column;
     gap: 0.5rem;
   }
-}
-/* Make all images responsive */
-img {
-  max-width: 100%;   /* Image width won't exceed its container */
-  height: auto;      /* Keep aspect ratio */
-  display: block;    /* Remove inline gap/spacing */
-  border-radius: 8px; /* Optional: rounded corners */
-}
 
-/* For the article images container, center and limit max width */
-.article-img {
-  max-width: 750px;  /* Matches your image width */
-  margin: 1rem auto; /* Center horizontally with vertical margin */
-  padding: 0 1rem;   /* Small horizontal padding on small screens */
-}
-
-/* For movie-card images */
-.movie-card img {
-  width: 100%;       /* Fill card width */
-  height: auto;      /* Maintain aspect ratio */
-  max-height: 400px; /* Prevent overly tall images */
-  object-fit: cover; /* Crop nicely if needed */
-  border-radius: 8px 8px 0 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .article-img {
-    max-width: 100%; /* Use full width on small screens */
-    padding: 0 1rem;
+  .info button {
+    font-size: 0.9rem;
+    padding: 0.4rem 1rem;
   }
+}
+.video-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+  width: 100%;
+}
 
-  .movie-card {
-    max-width: 90%; /* Movie cards take most screen width on phones */
-    margin: 1rem auto;
-  }
+.video-wrapper iframe {
+  width: 100%;
+  max-width: 750px;
+  aspect-ratio: 16 / 9;
+  border: none;
+  display: block;
 }
