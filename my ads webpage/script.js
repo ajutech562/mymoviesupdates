@@ -82,3 +82,15 @@ const firebaseConfig = {
   messagingSenderId: "460470112788",
   appId: "1:460470112788:web:a8ceece7ad5b13c79f0d01"
 };
+
+onSnapshot(q, (snapshot) => {
+  commentsList.innerHTML = "";
+  snapshot.forEach((doc) => {
+    const c = doc.data();
+    const li = document.createElement("li");
+    li.innerHTML = `<span class="username">${c.username}</span>
+                <span class="comment-text">${c.comment}</span>`;
+
+    commentsList.appendChild(li);
+  });
+});
