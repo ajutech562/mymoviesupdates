@@ -105,6 +105,28 @@ header h1 {
 #menu-toggle {
   display: none; /* We won't use the button at all */
 }
+/* Add this to your style.css */
+
+/* Base desktop style (example) */
+.menu li a {
+  font-size: 1rem; /* default desktop size */
+  padding: 8px 14px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .menu li a {
+    font-size: 0.85rem;  /* smaller text on mobile */
+    padding: 6px 10px;   /* less padding */
+  }
+
+  /* Optional: make menu vertical for small screens */
+  .menu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 
 
 nav ul {
@@ -574,3 +596,4 @@ footer {
   font-size: 0.95em;
   color: #ba1b1b;
 }
+
