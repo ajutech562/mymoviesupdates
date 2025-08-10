@@ -31,6 +31,7 @@ header h1 {
   display: flex;
   gap: 15px;
   flex-wrap: wrap; /* so items wrap on small screens */
+  justify-content: center;
 }
 
 #menu-toggle {
@@ -388,4 +389,5 @@ body.dark-mode .movie-info {
 body.dark-mode .movie-poster img {
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
+
 
