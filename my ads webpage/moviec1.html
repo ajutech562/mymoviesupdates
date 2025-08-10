@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lokah - Movie Review</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🎬 Lokah Movie Review</h1>
+    <button id="menu-toggle">Menu</button>
+    <button id="dark-mode-toggle">🌙</button>
+    <nav>
+      <ul id="menu-panel">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="featured">
+      <img src="https://i.ytimg.com/vi/u1Pz6OVZ5js/maxresdefault.jpg" alt="Lokah Poster" />
+      <h2>Lokah (2025)</h2>
+      <p><strong>Director:</strong> Jane Doe</p>
+      <p><strong>Cast:</strong> John Smith, Aisha Lee, Ravi Kumar</p>
+      <p><strong>Genre:</strong> Action | Drama | Sci-Fi</p>
+      <p><strong>Plot:</strong> In a world ravaged by climate chaos, a rogue scientist discovers a hidden realm where the Earth's spirit — Lokah — still thrives. With time running out, a team must protect it from industrial powers threatening to consume the last hope for humanity's survival.</p>
+      <h3>Highlights:</h3>
+      <ul>
+        <li>Stunning cinematography</li>
+        <li>Powerful performances</li>
+        <li>Emotional, thought-provoking story</li>
+      </ul>
+      <iframe width="100%" height="315" src="https://youtu.be/u1Pz6OVZ5js?si=zMLK1Onb8-fZbaOc" allowfullscreen></iframe>
+    
+
+      
+    </section>
+
+    <section class="rating">
+      <h3>Rate This Movie</h3>
+      <div class="stars" role="radiogroup">
+        <span class="star" data-value="1" role="radio" tabindex="0" aria-label="1 star">&#9733;</span>
+        <span class="star" data-value="2" role="radio" tabindex="0" aria-label="2 stars">&#9733;</span>
+        <span class="star" data-value="3" role="radio" tabindex="0" aria-label="3 stars">&#9733;</span>
+        <span class="star" data-value="4" role="radio" tabindex="0" aria-label="4 stars">&#9733;</span>
+        <span class="star" data-value="5" role="radio" tabindex="0" aria-label="5 stars">&#9733;</span>
+      </div>
+      <p class="rating-result" aria-live="polite"></p>
+    </section>
+
+    <section class="comments">
+      <h3>Leave a Comment</h3>
+      <form id="comment-form">
+        <input type="text" name="username" placeholder="Your Name" required />
+        <textarea name="comment" placeholder="Your Comment" rows="4" required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+      <ul id="comments"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Lokah Movie Review. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
