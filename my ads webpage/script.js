@@ -65,8 +65,7 @@ commentForm.addEventListener('submit', (e) => {
   // Scroll to new comment
   li.scrollIntoView({ behavior: 'smooth' });
 });
-document.getElementById("dark-mode-toggle").addEventListener("click", () => {
-  document.body.classList.toggle("dark-mode");
-});
+
+
 
 
