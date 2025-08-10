@@ -24,16 +24,17 @@ header h1 {
   font-size: 1.8rem;
   margin-bottom: 0.5rem;
 }
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap; /* so items wrap on small screens */
+}
 #menu-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #61dafb;
-  border: none;
-  padding: 0.4rem 0.8rem;
-  cursor: pointer;
-  font-weight: bold;
-  border-radius: 5px;
+  display: none; 
 }
 nav ul {
   display: none;
@@ -385,3 +386,4 @@ body.dark-mode .movie-info {
 body.dark-mode .movie-poster img {
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
+
