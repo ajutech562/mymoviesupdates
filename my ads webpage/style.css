@@ -1,180 +1,387 @@
-/* ===== General Styles ===== */
-body {
-  font-family: Arial, sans-serif;
+/* Base Reset */
+* {
   margin: 0;
-  background: #f5f5f5;
-  color: #222;
-  line-height: 1.6;
-}
-
-header {
-  background: #222;
-  color: #fff;
-  padding: 1rem;
-  text-align: center;
-}
-
-header h1 {
-  margin: 0;
-}
-
-nav {
-  margin-top: 0.5rem;
-}
-
-nav ul {
-  list-style: none;
   padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+  padding: 0 1rem;
 }
 
-nav ul li a {
-  color: #fff;
-  text-decoration: none;
-}
-
-#menu-toggle {
-  display: none;
-  background: #444;
-  border: none;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-
-/* ===== Featured Section ===== */
-.featured {
-  background: #fff;
-  padding: 1rem;
-  margin: 1rem;
-  border-radius: 8px;
-}
-
-.featured img {
-  max-width: 100%;
-  border-radius: 8px;
-}
-
-.read-more {
-  display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  background: #ff4b2b;
-  color: #fff;
-  border-radius: 4px;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  background: #e84118;
-}
-
-/* ===== Movie Grid ===== */
-.movie-grid {
-  padding: 1rem;
-}
-
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-}
-
-.movie-card {
-  background: #fff;
-  border-radius: 8px;
-  overflow: hidden;
+/* Header */
+header {
+  background-color: #20232a;
+  color: white;
+  padding: 1rem 0;
   text-align: center;
-  transition: transform 0.3s;
+  position: relative;
 }
-
-.movie-card img {
-  width: 100%;
-  height: auto;
-  transition: transform 0.3s;
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
 }
-
-.movie-card:hover img {
-  transform: scale(1.05);
+#menu-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #61dafb;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
 }
-
-.movie-card:hover {
-  transform: translateY(-5px);
+nav ul {
+  display: none;
+  list-style: none;
+  margin-top: 1rem;
 }
-
-.movie-card h3 {
+nav ul.active {
+  display: block;
+}
+nav ul li {
   margin: 0.5rem 0;
 }
+nav ul li a {
+  color: #61dafb;
+  text-decoration: none;
+}
 
-/* ===== Rating Stars ===== */
+/* Featured section */
+.featured {
+  margin: 2rem 0;
+}
+.featured img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+.featured h2, .featured h3 {
+  margin-top: 1rem;
+  color: #20232a;
+}
+.featured p, .featured ul {
+  margin-top: 0.5rem;
+}
+.featured ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+/* Trailer */
+iframe {
+  margin-top: 1rem;
+  border: none;
+  border-radius: 8px;
+}
+
+/* Rating section */
+.rating {
+  margin: 2rem 0;
+}
 .stars {
   font-size: 2rem;
   cursor: pointer;
+  display: flex;
+  gap: 0.3rem;
 }
-
 .star {
   color: #ccc;
-  transition: color 0.3s;
+}
+.star.selected {
+  color: #f39c12;
+}
+.rating-result {
+  margin-top: 0.5rem;
+  font-weight: bold;
 }
 
-.star.selected,
-.star:hover,
-.star:hover ~ .star {
-  color: gold;
-}
-
-/* ===== Comments ===== */
+/* Comments section */
 .comments {
-  padding: 1rem;
+  margin: 2rem 0;
 }
-
 .comments form {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-
-.comments input,
+.comments input[type="text"],
 .comments textarea {
   padding: 0.5rem;
-  font-size: 1rem;
+  border-radius: 5px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  width: 100%;
 }
-
 .comments button {
-  padding: 0.5rem;
-  background: #222;
-  color: #fff;
+  width: fit-content;
+  padding: 0.5rem 1rem;
+  background-color: #20232a;
+  color: white;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
 }
+#comments {
+  list-style: none;
+  margin-top: 1rem;
+}
+#comments li {
+  margin-bottom: 1rem;
+  background-color: #fff;
+  padding: 1rem;
+  border-left: 4px solid #61dafb;
+  border-radius: 5px;
+}
+#comments li strong {
+  display: block;
+  color: #20232a;
+}
 
-/* ===== Footer ===== */
+/* Footer */
 footer {
-  background: #222;
-  color: #fff;
   text-align: center;
+  padding: 1rem 0;
+  margin-top: 2rem;
+  background-color: #eee;
+  color: #555;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  nav ul {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  #menu-toggle {
+    display: none;
+  }
+}
+/* Reset and Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
+  padding: 0 1rem;
+}
+.dark-mode {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+/* Header */
+header {
+  background-color: #20232a;
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+}
+#menu-toggle, #dark-mode-toggle {
+  position: absolute;
+  top: 1rem;
+  background: #61dafb;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 5px;
+}
+#menu-toggle { right: 3rem; }
+#dark-mode-toggle { right: 1rem; }
+nav ul {
+  display: none;
+  list-style: none;
+  margin-top: 1rem;
+}
+nav ul.active { display: block; }
+nav ul li { margin: 0.5rem 0; }
+nav ul li a { color: #61dafb; text-decoration: none; }
+
+/* Featured Section */
+.featured img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s;
+}
+.featured img:hover { transform: scale(1.02); }
+
+/* Rating Stars */
+.stars {
+  font-size: 2rem;
+  display: flex;
+  gap: 0.3rem;
+  cursor: pointer;
+}
+.star {
+  color: #ccc;
+  transition: color 0.2s;
+}
+.star:hover, .star.selected { color: #f39c12; }
+
+/* Comments */
+.comments form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.comments input, .comments textarea {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.comments button {
+  background-color: #20232a;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+#comments li {
+  background: #fff;
+  border-left: 4px solid #61dafb;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 5px;
+}
+.dark-mode #comments li { background: #1e1e1e; }
+
+/* Footer */
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  padding: 1rem 0;
+  background: #eee;
+  color: #555;
+}
+.dark-mode footer { background: #1a1a1a; color: #bbb; }
+
+@media (min-width: 768px) {
+  nav ul { display: flex; justify-content: center; gap: 1rem; }
+  #menu-toggle { display: none; }
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
   padding: 1rem;
 }
 
-/* ===== Responsive Menu ===== */
-@media (max-width: 768px) {
-  nav ul {
-    display: none;
-    flex-direction: column;
-    background: #333;
-    padding: 1rem;
-  }
+.movie-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
 
-  nav ul.active {
-    display: flex;
-  }
+.movie-card:hover {
+  transform: scale(1.02);
+}
 
-  #menu-toggle {
-    display: inline-block;
-  }
+.movie-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.movie-card h3 {
+  margin: 0.5rem;
+}
+
+.movie-card p {
+  padding: 0 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+.movie-card .read-more {
+  display: inline-block;
+  margin: 0.5rem;
+  padding: 0.3rem 0.8rem;
+  background-color: #007bff;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85rem;
+}
+
+.movie-card .read-more:hover {
+  background-color: #0056b3;
+}
+
+/* Star hover effect */
+.stars .star {
+  font-size: 2rem;
+  color: gray;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.stars .star:hover,
+.stars .star.selected {
+  color: gold;
+}
+
+/* Optional: Dark mode toggle */
+body.dark-mode {
+  background-color: #121212;
+  color: #fff;
+}
+
+body.dark-mode .movie-card {
+  background-color: #1e1e1e;
+  color: #ddd;
+}
+
+/* for the moviec2 */
+
+.movie-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 1rem;
+}
+
+.movie-poster img {
+  max-width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.movie-info {
+  flex: 1;
+  min-width: 250px;
+}
+
+.movie-info h2 {
+  margin-top: 0;
+}
+
+.movie-info a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.movie-info a:hover {
+  text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+body.dark-mode .movie-info {
+  color: #ddd;
+}
+body.dark-mode .movie-poster img {
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
