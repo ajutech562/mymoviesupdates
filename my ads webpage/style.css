@@ -12,6 +12,74 @@ body {
   padding: 0 1rem;
 }
 
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio (height ÷ width × 100) */
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* new movie articles*/
+
+/* Responsive video container for trailers */
+
+.movie-article {
+  max-width: 900px; /* keeps the content centered on large screens */
+  margin: 0 auto;   /* centers horizontally */
+  padding: 15px;    /* adds space on left/right and top/bottom */
+  box-sizing: border-box;
+}
+
+.movie-article h1, 
+.movie-article h2 {
+  font-size: 2.2rem; /* Bigger than the default */
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  color: #222;
+}
+
+.movie-article h2 {
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.movie-article p, 
+.movie-article ul {
+  line-height: 1.6;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  overflow: hidden;
+  background: #000;
+  border-radius: 8px; /* optional */
+  margin-bottom: 20px;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+
+
+
 /* Header */
 header {
   background-color: #20232a;
@@ -38,7 +106,7 @@ header h1 {
   display: none; /* We won't use the button at all */
 }
 
-}
+
 nav ul {
   display: none;
   list-style: none;
@@ -389,5 +457,6 @@ body.dark-mode .movie-info {
 body.dark-mode .movie-poster img {
   box-shadow: 0 4px 12px rgba(255,255,255,0.1);
 }
+
 
 
