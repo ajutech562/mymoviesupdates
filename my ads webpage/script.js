@@ -1,9 +1,4 @@
-const toggleBtn = document.getElementById("menu-toggle");
-const menuPanel = document.getElementById("menu-panel");
 
-toggleBtn.addEventListener("click", () => {
-  menuPanel.classList.toggle("active");
-});
 // Rating stars functionality
 const stars = document.querySelectorAll('.stars .star');
 const ratingResult = document.querySelector('.rating-result');
@@ -73,4 +68,5 @@ commentForm.addEventListener('submit', (e) => {
 document.getElementById("dark-mode-toggle").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
+
 
