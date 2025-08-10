@@ -11,12 +11,13 @@
 <body>
 
 <!-- Firebase SDKs -->
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js"></script>
+<script type="module">
+  // Import the functions you need from the SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-<script>
   // ✅ Replace with your Firebase Config
-  const firebaseConfig = {
+ const firebaseConfig = {
   apiKey: "AIzaSyDDS5Wj6o843817kUpNTK4gLKKUFcMn5-Q",
   authDomain: "mymoviescomments.firebaseapp.com",
   projectId: "mymoviescomments",
@@ -24,32 +25,40 @@
   messagingSenderId: "460470112788",
   appId: "1:460470112788:web:a8ceece7ad5b13c79f0d01"
 };
-  
 
   // Initialize Firebase
-  const app = firebase.initializeApp(firebaseConfig);
-  const db = firebase.firestore();
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-  // Submit Comment
-  document.getElementById("comment-form").addEventListener("submit", function(e) {
+  // Handle form submit
+  document.getElementById("comment-form").addEventListener("submit", async (e) => {
     e.preventDefault();
-    const username = document.getElementById("username").value;
-    const comment = document.getElementById("comment").value;
+    const username = document.getElementById("username").value.trim();
+    const comment = document.getElementById("comment").value.trim();
 
-    db.collection("comments").add({
-      username: username,
-      comment: comment,
-      createdAt: new Date()
-    }).then(() => {
+    if (username && comment) {
+      console.log('Saving comment to Firestore...');
+      document.getElementById('comments-status').textContent = 'Saving comment...';
+      await addDoc(collection(db, "comments"), {
+        username,
+        comment,
+        createdAt: serverTimestamp()
+      });
       document.getElementById("comment-form").reset();
-    });
+      document.getElementById('comments-status').textContent = 'Comment saved!';
+    }
   });
 
-  // Load Comments in Real-Time
-  db.collection("comments").orderBy("createdAt", "desc").onSnapshot(snapshot => {
-    const commentsList = document.getElementById("comments-list");
+  // Display comments in real-time
+  const commentsList = document.getElementById("comments-list");
+  const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
+  console.log('Listening for real-time comment updates...');
+  document.getElementById('comments-status').textContent = 'Loading comments...';
+  onSnapshot(q, (snapshot) => {
     commentsList.innerHTML = "";
-    snapshot.forEach(doc => {
+    console.log('Received comments snapshot:', snapshot.docs.length, 'comments');
+    document.getElementById('comments-status').textContent = snapshot.docs.length + ' comments loaded';
+    snapshot.forEach((doc) => {
       const c = doc.data();
       const li = document.createElement("li");
       li.textContent = `${c.username}: ${c.comment}`;
@@ -57,6 +66,7 @@
     });
   });
 </script>
+
 
 <header>
 <h1>🎬 Jutech OTT Releases</h1>
@@ -136,11 +146,11 @@
     storytelling:
   </p>
 <ul>
-<li><strong>Lead Actor:</strong> [Actor Name] – Bringing depth and intensity to the central role.</li>
-<li><strong>Lead Actress:</strong> [Actress Name] – Delivering both strength and vulnerability.</li>
-<li><strong>Director:</strong> [Director Name] – Known for crafting compelling narratives.</li>
-<li><strong>Music Composer:</strong> [Composer Name] – Providing an emotionally charged soundtrack.</li>
-<li><strong>Cinematographer:</strong> [Cinematographer Name] – Capturing the visual tone of the film beautifully.</li>
+<ul><strong>Lead Actor:</strong> Kalyani Priyadarshan – Bringing depth and intensity to the central role.</li>
+<ul><strong>Lead Actress:</strong> Naslen K. Gafoor – Delivering both strength and vulnerability.</li>
+<ul><strong>Director:</strong> Dominic Arun  – Known for crafting compelling narratives.</li>
+<ul><strong>Music Composer:</strong> Jakes Bejoy  – Providing an emotionally charged soundtrack.</li>
+<ul><strong>Cinematographer:</strong>  Nimish Ravi – Capturing the visual tone of the film beautifully.</li>
 </ul>
 <h2>Why Lokah Stands Out</h2>
 <p>
@@ -199,15 +209,24 @@
 <strong>Ramayana</strong> brings together a carefully chosen ensemble to inhabit
     these larger-than-life roles:
   </p>
-<ul>
-<li><strong>Rama:</strong> [Lead Actor] — A performance balancing regal calm and human vulnerability.</li>
-<li><strong>Sita:</strong> [Lead Actress] — A portrayal emphasizing strength, compassion, and quiet resolve.</li>
-<li><strong>Lakshmana:</strong> [Supporting Actor] — The faithful brother whose courage anchors many scenes.</li>
-<li><strong>Ravana:</strong> [Antagonist Actor] — A commanding, complex antagonist with charisma and menace.</li>
-<li><strong>Director:</strong> [Director Name] — Known for visual storytelling and cultural sensitivity.</li>
-<li><strong>Music:</strong> [Composer Name] — A score blending classical motifs and cinematic orchestration.</li>
-</ul>
-<h2>Production &amp; Release Details</h2>
+<ul style="list-style-type: none; padding: 0;">
+  <li><strong>Rama:</strong> Ranbir Kapoor — A performance balancing regal calm and human vulnerability.</li>
+  <li><strong>Sita:</strong> Sai Pallavi — A portrayal emphasizing strength, compassion, and quiet resolve.</li>
+  <li><strong>Lakshmana:</strong> Ravi Dubey — The faithful brother whose courage anchors many scenes.</li>
+  <li><strong>Ravana:</strong> Yash — A commanding, complex antagonist with charisma and menace.</li>
+  <li><strong>Hanuman:</strong> Sunny Deol — Unwavering devotion as the iconic monkey warrior.</li>
+  <li><strong>Jatayu (Voice):</strong> Amitabh Bachchan — Lends his distinctive voice to the divine eagle.</li>
+  <li><strong>Dasharatha:</strong> Arun Govil — The revered father of Rama.</li>
+  <li><strong>Kaikeyi:</strong> Lara Dutta — Plays the pivotal queen whose actions drive the plot.</li>
+  <li><strong>Kausalya:</strong> Indira Krishnan — Compassionate mother of Rama.</li>
+  <li><strong>Mandodari:</strong> Kajal Aggarwal — Graceful and resilient queen of Ravana.</li>
+  <li><strong>Surpanakha:</strong> Rakul Preet Singh — The demoness whose choices change destinies.</li>
+  <li><strong>Vidyutjihva:</strong> Vivek Oberoi — Surpanakha’s husband, played with dramatic weight.</li>
+  <li><strong>Director:</strong> Nitesh Tiwari — Known for visual storytelling and cultural sensitivity.</li>
+  <li><strong>Music:</strong> A. R. Rahman & Hans Zimmer — A score blending classical motifs and cinematic orchestration.</li>
+</ul
+
+<h2> Production &amp; Release Details</h2>
 <p>
     The film is the result of years of research, costume design, and location scouting to
     ensure cultural authenticity and cinematic spectacle. Filming combined practical sets
@@ -244,12 +263,14 @@
     Mark your calendar for <strong>[Release Date]</strong> and prepare for an epic journey
     that bridges ancient wisdom and modern filmmaking.
   </p>
+
+
 </article><div class="ad-slot">Ad Placeholder</div>
 <article class="movie-article">
 <h1>🎬 Peddi</h1>
 <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-<iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/QGk_ErT_azg?si=yqydPKENRWl0RChd" title="YouTube video player" width="560"></iframe> </div>
-<h2>Overview</h2>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/77KAnoqpoFw?si=hQDJhicJbgT7z8G4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 <p>
 <strong>Peddi</strong> is an engaging drama that blends emotion, humor, and 
     powerful performances to create an unforgettable cinematic experience. 
@@ -264,11 +285,12 @@
     ambitions, and place in the community.
   </p>
 <h2>Cast</h2>
-<ul>
-<li>Main Lead – Actor Name</li>
-<li>Supporting Role – Actor Name</li>
-<li>Special Appearance – Actor Name</li>
+<ul style="list-style-type: none; padding-left: 0;">
+  <li><strong>Main Lead:</strong> Ram Charan — leading the rural sports action drama as the rugged hero. :contentReference[oaicite:0]{index=0}</li>
+  <li><strong>Supporting Role:</strong> Janhvi Kapoor — starring alongside him as the female lead. :contentReference[oaicite:1]{index=1}</li>
+  <li><strong>Special Appearance:</strong> Shiva Rajkumar, Jagapathi Babu, Divyendu Sharma — all appearing in key roles. :contentReference[oaicite:2]{index=2}</li>
 </ul>
+
 <h2>Why Watch Peddi?</h2>
 <p>
     The film offers a perfect mix of heartfelt drama and captivating storytelling, 
@@ -309,11 +331,13 @@
   </p>
 <h3>Why You Should Watch</h3>
 <ul>
-<li>A compelling blend of drama, suspense, and emotional storytelling.</li>
-<li>Strong performances from a talented cast.</li>
-<li>Visually striking cinematography and immersive sound design.</li>
-<li>Thematic depth that invites discussion and reflection.</li>
+<ul>A compelling blend of drama, suspense, and emotional storytelling.</li>
+<ul>Strong performances from a talented cast.</li>
+<ul>Visually striking cinematography and immersive sound design.</li>
+<ul>Thematic depth that invites discussion and reflection.</li>
 </ul>
+
+
 </article><div class="ad-slot">Ad Placeholder</div>
 <article class="movie-article">
 <h2>🎬 G2 – The High-Octane Spy Thriller Returns</h2>
@@ -343,10 +367,10 @@
   </p>
 <h3>Why Fans Are Excited</h3>
 <ul>
-<li>Sequel to the popular spy thriller <em>Goodachari</em>.</li>
-<li>International-level action sequences shot in multiple countries.</li>
-<li>Engaging mix of espionage, drama, and emotion.</li>
-<li>High-quality production values and stylish presentation.</li>
+<ul>Sequel to the popular spy thriller <em>Goodachari</em></li>
+<ul>International-level action sequences shot in multiple countries.</li>
+<ul>Engaging mix of espionage, drama, and emotion.</li>
+<ul>High-quality production values and stylish presentation.</li>
 </ul>
 <h3>Filming and Release</h3>
 <p>
@@ -354,6 +378,8 @@
     effects. Fans can expect the film to release in cinemas worldwide, promising a grand theatrical experience.
   </p>
 </article>
+
+
 <article class="movie-article">
 <h2>🎬 Jana Nayagan – A Story of Courage and Justice</h2>
 <div class="video-container">
@@ -380,11 +406,13 @@
   </p>
 <h3>Highlights</h3>
 <ul>
-<li>Emotionally charged performances that connect with audiences.</li>
-<li>A socially relevant storyline with universal appeal.</li>
-<li>Well-crafted cinematography that captures both intimate and grand moments.</li>
-<li>A rousing soundtrack that underscores the film’s themes of hope and determination.</li>
+<ul>Emotionally charged performances that connect with audiences.</li>
+<ul>A socially relevant storyline with universal appeal.</li>
+<ul>Well-crafted cinematography that captures both intimate and grand moments.</li>
+<ul>A rousing soundtrack that underscores the film’s themes of hope and determination.</li>
 </ul>
+
+
 </article><div class="ad-slot">Ad Placeholder</div>
 <article class="movie-article">
 <h2>Mardaani 3 – A Powerful Tale of Justice and Courage</h2>
@@ -412,10 +440,10 @@
   </p>
 <h3>Highlights</h3>
 <ul>
-<li>A strong, determined female lead in a high-stakes police drama.</li>
-<li>Engaging investigative sequences with unexpected twists.</li>
-<li>A socially relevant message about fighting injustice.</li>
-<li>Top-notch performances from the entire cast.</li>
+<ul>A strong, determined female lead in a high-stakes police drama.</li>
+<ul>Engaging investigative sequences with unexpected twists.</li>
+<ul>A socially relevant message about fighting injustice.</li>
+<ul>Top-notch performances from the entire cast.</li>
 </ul>
 </article>
 <!-- More movie blocks here -->
@@ -427,7 +455,8 @@
     <textarea id="comment" placeholder="Your Comment" required></textarea>
     <button type="submit">Post Comment</button>
   </form>
-  <ul id="comments-list"></ul>
+  <p id="comments-status" style="color:gray;font-style:italic;">No comments yet.</p>
+      <ul id="comments-list"></ul>
 </section>
 
 </section>
