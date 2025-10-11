@@ -3,87 +3,86 @@
 <html lang="en">
 <head>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7746406971060998"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7746406971060998"
-     crossorigin="anonymous"></script>
-     
+     crossorigin="anonymous"></script>
+     
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="Get the latest movie updates, trailers, and reviews. Stay updated on your favorite OTT releases." name="description"/>
 <title>OTT Movie Updates - Jutech</title>
 <link href="style.css" rel="stylesheet"/>
 
-  
-  
- <meta name="referrer" content="no-referrer-when-downgrade" />
+  
+  
+ <meta name="referrer" content="no-referrer-when-downgrade" />
 <meta content="OTT Movie Updates - Jutech" property="og:title"/><meta content="Get the latest movie updates, trailers, and reviews." property="og:description"/><meta content="website" property="og:type"/><meta content="https://mymoviesupdates.vercel.app" property="og:url"/><meta content="https://mymoviesupdates.vercel.app/og-image.jpg" property="og:image"/></head>
 <body>
- 
+ 
 <meta name="9e700891277f36e44c4a68039e0ec506a8346eb5" content="9e700891277f36e44c4a68039e0ec506a8346eb5" />
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17374307431"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  gtag('config', 'AW-17374307431');
+  gtag('config', 'AW-17374307431');
 </script>
 
-  <script type="module">
-  // Import the functions you need from the SDKs
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-  import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+  <script type="module">
+  // Import the functions you need from the SDKs
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+  import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
-  // ✅ Replace with your Firebase Config
- const firebaseConfig = {
-  apiKey: "AIzaSyDDS5Wj6o843817kUpNTK4gLKKUFcMn5-Q",
-  authDomain: "mymoviescomments.firebaseapp.com",
-  projectId: "mymoviescomments",
-  storageBucket: "mymoviescomments.firebasestorage.app",
-  messagingSenderId: "460470112788",
-  appId: "1:460470112788:web:a8ceece7ad5b13c79f0d01"
+  // ✅ Replace with your Firebase Config
+ const firebaseConfig = {
+  apiKey: "AIzaSyDDS5Wj6o843817kUpNTK4gLKKUFcMn5-Q",
+  authDomain: "mymoviescomments.firebaseapp.com",
+  projectId: "mymoviescomments",
+  storageBucket: "mymoviescomments.firebasestorage.app",
+  messagingSenderId: "460470112788",
+  appId: "1:460470112788:web:a8ceece7ad5b13c79f0d01"
 };
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
 
-  // Handle form submit
-  document.getElementById("comment-form").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const username = document.getElementById("username").value.trim();
-    const comment = document.getElementById("comment").value.trim();
+  // Handle form submit
+  document.getElementById("comment-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const username = document.getElementById("username").value.trim();
+    const comment = document.getElementById("comment").value.trim();
 
-    if (username && comment) {
-      console.log('Saving comment to Firestore...');
-      document.getElementById('comments-status').textContent = 'Saving comment...';
-      await addDoc(collection(db, "comments"), {
-        username,
-        comment,
-        createdAt: serverTimestamp()
-      });
-      document.getElementById("comment-form").reset();
-      document.getElementById('comments-status').textContent = 'Comment saved!';
-    }
-  });
+    if (username && comment) {
+      console.log('Saving comment to Firestore...');
+      document.getElementById('comments-status').textContent = 'Saving comment...';
+      await addDoc(collection(db, "comments"), {
+        username,
+        comment,
+        createdAt: serverTimestamp()
+      });
+      document.getElementById("comment-form").reset();
+      document.getElementById('comments-status').textContent = 'Comment saved!';
+    }
+  });
 
-  // Display comments in real-time
-  const commentsList = document.getElementById("comments-list");
-  const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
-  console.log('Listening for real-time comment updates...');
-  document.getElementById('comments-status').textContent = 'Loading comments...';
-  onSnapshot(q, (snapshot) => {
-    commentsList.innerHTML = "";
-    console.log('Received comments snapshot:', snapshot.docs.length, 'comments');
-    document.getElementById('comments-status').textContent = snapshot.docs.length + ' comments loaded';
-    snapshot.forEach((doc) => {
-      const c = doc.data();
-      const li = document.createElement("li");
-      li.textContent = `${c.username}: ${c.comment}`;
-      commentsList.appendChild(li);
-    });
-  });
+  // Display comments in real-time
+  const commentsList = document.getElementById("comments-list");
+  const q = query(collection(db, "comments"), orderBy("createdAt", "desc"));
+  console.log('Listening for real-time comment updates...');
+  document.getElementById('comments-status').textContent = 'Loading comments...';
+  onSnapshot(q, (snapshot) => {
+    commentsList.innerHTML = "";
+    console.log('Received comments snapshot:', snapshot.docs.length, 'comments');
+    document.getElementById('comments-status').textContent = snapshot.docs.length + ' comments loaded';
+    snapshot.forEach((doc) => {
+      const c = doc.data();
+      const li = document.createElement("li");
+      li.textContent = `${c.username}: ${c.comment}`;
+      commentsList.appendChild(li);
+    });
+  });
 </script>
 
 
@@ -109,26 +108,26 @@
 <img alt="Lokah Movie Poster" loading="lazy" src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/lokah-chapter-1--chandra-et00456016-1753856507.jpg"/>
 <h3>Lokah 2</h3>
 <p>Spiritual thriller that explores cosmic balance and karma.</p>
-<a class="read-more" href="moviec1.html">Read More</a>
+<a class="read-more" href="https://t.me/jutech_ott" target="_blank">View on Telegram</a>
 
 </div>
 <div class="movie-card">
 <img alt="coolie Movie Poster" loading="lazy" src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/coolie-et00395817-1713790691.jpg"/>
 <h3>Coolie</h3>
 <p>An adrenaline-packed ride through futuristic cities and races.</p>
-<a class="read-more" href="moviec2.html">Read More</a>
+<a class="read-more" href="https://t.me/jutech_ott" target="_blank">View on Telegram</a>
 </div>
 <div class="movie-card">
 <img alt="Red Flower Movie Poster" loading="lazy" src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/red-flower-et00453903-1753673435.jpg"/>
 <h3>Red Flower</h3>
 <p>A survival drama set beneath the ocean’s deepest trenches.</p>
-<a class="read-more" href="moviec3.html">Read More</a>
+<a class="read-more" href="https://t.me/jutech_ott" target="_blank">View on Telegram</a>
 </div>
 <div class="movie-card">
 <img alt="Kingdom Movie Poster" loading="lazy" src="https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/kingdom-et00433664-1753697049.jpg"/>
-<h3>Kingdom</h3>
+<h3>Kingdom </h3>
 <p>Romantic drama capturing life, dreams, and heartbreaks in a metro.</p>
-<a class="read-more" href="moviec4.html">Read More</a>
+<a class="read-more" href="https://t.me/jutech_ott" target="_blank">View on Telegram</a>
 </div>
 </div>
 </section>
@@ -144,59 +143,59 @@
 <h2>Introduction</h2>
 <p>
 <strong> Lokah</strong> is an upcoming action-drama film that has already begun
-     generating significant buzz among movie lovers. Combining a gripping storyline,
-     dynamic performances, and breathtaking visuals, Lokah aims to deliver a cinematic
-     experience that will stay with viewers long after the credits roll. The film blends
-     intense emotional moments with high-paced action sequences, appealing to a broad
-     range of audiences who appreciate both heart and spectacle in their movies.
-   </p>
+     generating significant buzz among movie lovers. Combining a gripping storyline,
+     dynamic performances, and breathtaking visuals, Lokah aims to deliver a cinematic
+     experience that will stay with viewers long after the credits roll. The film blends
+     intense emotional moments with high-paced action sequences, appealing to a broad
+     range of audiences who appreciate both heart and spectacle in their movies.
+   </p>
 <h2>Plot Overview</h2>
 <p>
-     Set against the backdrop of a bustling city caught between tradition and modernity,
-     Lokah follows the journey of a young protagonist who finds themselves entangled in
-     a web of secrets, betrayal, and moral dilemmas. As the story unfolds, the main
-     character must confront powerful adversaries, make life-changing decisions, and
-     protect the ones they love. Without relying on clichés, the plot delivers surprising
-     twists and emotionally resonant moments that keep audiences engaged from start to
-     finish.
-   </p>
+     Set against the backdrop of a bustling city caught between tradition and modernity,
+     Lokah follows the journey of a young protagonist who finds themselves entangled in
+     a web of secrets, betrayal, and moral dilemmas. As the story unfolds, the main
+     character must confront powerful adversaries, make life-changing decisions, and
+     protect the ones they love. Without relying on clichés, the plot delivers surprising
+     twists and emotionally resonant moments that keep audiences engaged from start to
+     finish.
+   </p>
 <h2>Cast &amp; Crew</h2>
 <p>
-     Lokah features a talented ensemble cast whose performances are set to elevate the
-     storytelling:
-   </p>
+     Lokah features a talented ensemble cast whose performances are set to elevate the
+     storytelling:
+   </p>
 <ul>
 <ul><strong>Lead Actor:</strong> Kalyani Priyadarshan – Bringing depth and intensity to the central role.</li>
 <ul><strong>Lead Actress:</strong> Naslen K. Gafoor – Delivering both strength and vulnerability.</li>
-<ul><strong>Director:</strong> Dominic Arun  – Known for crafting compelling narratives.</li>
-<ul><strong>Music Composer:</strong> Jakes Bejoy  – Providing an emotionally charged soundtrack.</li>
-<ul><strong>Cinematographer:</strong>  Nimish Ravi – Capturing the visual tone of the film beautifully.</li>
+<ul><strong>Director:</strong> Dominic Arun  – Known for crafting compelling narratives.</li>
+<ul><strong>Music Composer:</strong> Jakes Bejoy  – Providing an emotionally charged soundtrack.</li>
+<ul><strong>Cinematographer:</strong>  Nimish Ravi – Capturing the visual tone of the film beautifully.</li>
 </ul>
 <h2>Why Lokah Stands Out</h2>
 <p>
-     What sets Lokah apart from other releases this year is its commitment to authenticity
-     and attention to detail. Every scene has been carefully designed to immerse viewers
-     in the story's world. The fight choreography is realistic yet visually stunning, and
-     the soundtrack perfectly complements the changing moods of the film. Beyond its
-     technical achievements, Lokah also explores universal themes such as loyalty,
-     sacrifice, and the complexity of human relationships.
-   </p>
+     What sets Lokah apart from other releases this year is its commitment to authenticity
+     and attention to detail. Every scene has been carefully designed to immerse viewers
+     in the story's world. The fight choreography is realistic yet visually stunning, and
+     the soundtrack perfectly complements the changing moods of the film. Beyond its
+     technical achievements, Lokah also explores universal themes such as loyalty,
+     sacrifice, and the complexity of human relationships.
+   </p>
 <h2>Release Date &amp; Where to Watch</h2>
 <p>
-     Lokah is scheduled for a nationwide release on <strong>[Release Date]</strong>.
-     Fans can expect to see it in major theaters, with plans for digital streaming on
-     popular platforms shortly after its cinema run. Early screenings suggest that the
-     film will be a strong contender during awards season, making it a must-watch for
-     both casual moviegoers and dedicated film enthusiasts.
-   </p>
+     Lokah is scheduled for a nationwide release on <strong>[Release Date]</strong>.
+     Fans can expect to see it in major theaters, with plans for digital streaming on
+     popular platforms shortly after its cinema run. Early screenings suggest that the
+     film will be a strong contender during awards season, making it a must-watch for
+     both casual moviegoers and dedicated film enthusiasts.
+   </p>
 <h2>Final Thoughts</h2>
 <p>
-     Whether you're a fan of intense drama, edge-of-your-seat action, or thought-provoking
-     storytelling, Lokah promises to deliver on all fronts. With its talented cast,
-     masterful direction, and a story that resonates, it is shaping up to be one of the
-     standout films of the year. Be sure to mark your calendars and witness this cinematic
-     journey when it hits the big screen.
-   </p>
+     Whether you're a fan of intense drama, edge-of-your-seat action, or thought-provoking
+     storytelling, Lokah promises to deliver on all fronts. With its talented cast,
+     masterful direction, and a story that resonates, it is shaping up to be one of the
+     standout films of the year. Be sure to mark your calendars and witness this cinematic
+     journey when it hits the big screen.
+   </p>
 </article>
 <article class="movie-article">
 <h1>🎬 Ramayana – Official Movie Details, Story, Cast &amp; Release</h1>
@@ -206,86 +205,86 @@
 <h2>Introduction</h2>
 <p>
 <strong>Ramayana</strong> is a sweeping cinematic retelling of one of the world’s most
-     enduring epics. Reimagined for modern audiences while remaining deeply respectful of
-     its roots, this film aims to bring the moral richness and emotional depth of the
-     ancient tale to the big screen. With an emphasis on character-driven moments, visual
-     craftsmanship, and a stirring musical score, <em>Ramayana</em> seeks to be both a
-     faithful adaptation for devotees and an accessible, powerful story for newcomers.
-   </p>
+     enduring epics. Reimagined for modern audiences while remaining deeply respectful of
+     its roots, this film aims to bring the moral richness and emotional depth of the
+     ancient tale to the big screen. With an emphasis on character-driven moments, visual
+     craftsmanship, and a stirring musical score, <em>Ramayana</em> seeks to be both a
+     faithful adaptation for devotees and an accessible, powerful story for newcomers.
+   </p>
 <h2>Plot Overview</h2>
 <p>
-     The story follows Prince Rama of Ayodhya, a noble and principled hero forced into
-     exile through palace intrigue. Accompanied by his devoted wife Sita and loyal brother
-     Lakshmana, Rama undertakes a long, perilous journey into the forest. Their exile
-     brings them into contact with sages, allies, and foes, culminating in the abduction
-     of Sita by the formidable King Ravana of Lanka. The narrative then unfolds as a
-     vast quest of rescue and redemption — alliances are forged, divine aid is sought,
-     and the forces of good and evil prepare for a decisive confrontation. This adaptation
-     focuses on the human emotions and ethical conflicts behind the mythology: duty vs.
-     desire, justice vs. vengeance, and the personal cost of upholding one’s principles.
-   </p>
+     The story follows Prince Rama of Ayodhya, a noble and principled hero forced into
+     exile through palace intrigue. Accompanied by his devoted wife Sita and loyal brother
+     Lakshmana, Rama undertakes a long, perilous journey into the forest. Their exile
+     brings them into contact with sages, allies, and foes, culminating in the abduction
+     of Sita by the formidable King Ravana of Lanka. The narrative then unfolds as a
+     vast quest of rescue and redemption — alliances are forged, divine aid is sought,
+     and the forces of good and evil prepare for a decisive confrontation. This adaptation
+     focuses on the human emotions and ethical conflicts behind the mythology: duty vs.
+     desire, justice vs. vengeance, and the personal cost of upholding one’s principles.
+   </p>
 <h2>Cast &amp; Crew</h2>
 <p>
 <strong>Ramayana</strong> brings together a carefully chosen ensemble to inhabit
-     these larger-than-life roles:
-   </p>
+     these larger-than-life roles:
+   </p>
 <ul style="list-style-type: none; padding: 0;">
-  <li><strong>Rama:</strong> Ranbir Kapoor — A performance balancing regal calm and human vulnerability.</li>
-  <li><strong>Sita:</strong> Sai Pallavi — A portrayal emphasizing strength, compassion, and quiet resolve.</li>
-  <li><strong>Lakshmana:</strong> Ravi Dubey — The faithful brother whose courage anchors many scenes.</li>
-  <li><strong>Ravana:</strong> Yash — A commanding, complex antagonist with charisma and menace.</li>
-  <li><strong>Hanuman:</strong> Sunny Deol — Unwavering devotion as the iconic monkey warrior.</li>
-  <li><strong>Jatayu (Voice):</strong> Amitabh Bachchan — Lends his distinctive voice to the divine eagle.</li>
-  <li><strong>Dasharatha:</strong> Arun Govil — The revered father of Rama.</li>
-  <li><strong>Kaikeyi:</strong> Lara Dutta — Plays the pivotal queen whose actions drive the plot.</li>
-  <li><strong>Kausalya:</strong> Indira Krishnan — Compassionate mother of Rama.</li>
-  <li><strong>Mandodari:</strong> Kajal Aggarwal — Graceful and resilient queen of Ravana.</li>
-  <li><strong>Surpanakha:</strong> Rakul Preet Singh — The demoness whose choices change destinies.</li>
-  <li><strong>Vidyutjihva:</strong> Vivek Oberoi — Surpanakha’s husband, played with dramatic weight.</li>
-  <li><strong>Director:</strong> Nitesh Tiwari — Known for visual storytelling and cultural sensitivity.</li>
-  <li><strong>Music:</strong> A. R. Rahman & Hans Zimmer — A score blending classical motifs and cinematic orchestration.</li>
+  <li><strong>Rama:</strong> Ranbir Kapoor — A performance balancing regal calm and human vulnerability.</li>
+  <li><strong>Sita:</strong> Sai Pallavi — A portrayal emphasizing strength, compassion, and quiet resolve.</li>
+  <li><strong>Lakshmana:</strong> Ravi Dubey — The faithful brother whose courage anchors many scenes.</li>
+  <li><strong>Ravana:</strong> Yash — A commanding, complex antagonist with charisma and menace.</li>
+  <li><strong>Hanuman:</strong> Sunny Deol — Unwavering devotion as the iconic monkey warrior.</li>
+  <li><strong>Jatayu (Voice):</strong> Amitabh Bachchan — Lends his distinctive voice to the divine eagle.</li>
+  <li><strong>Dasharatha:</strong> Arun Govil — The revered father of Rama.</li>
+  <li><strong>Kaikeyi:</strong> Lara Dutta — Plays the pivotal queen whose actions drive the plot.</li>
+  <li><strong>Kausalya:</strong> Indira Krishnan — Compassionate mother of Rama.</li>
+  <li><strong>Mandodari:</strong> Kajal Aggarwal — Graceful and resilient queen of Ravana.</li>
+  <li><strong>Surpanakha:</strong> Rakul Preet Singh — The demoness whose choices change destinies.</li>
+  <li><strong>Vidyutjihva:</strong> Vivek Oberoi — Surpanakha’s husband, played with dramatic weight.</li>
+  <li><strong>Director:</strong> Nitesh Tiwari — Known for visual storytelling and cultural sensitivity.</li>
+  <li><strong>Music:</strong> A. R. Rahman & Hans Zimmer — A score blending classical motifs and cinematic orchestration.</li>
 </ul>
 
 <h2> Production &amp; Release Details</h2>
 <p>
-     The film is the result of years of research, costume design, and location scouting to
-     ensure cultural authenticity and cinematic spectacle. Filming combined practical sets
-     with high-end visual effects to bring mythical landscapes and epic battles to life.
-     <strong>Ramayana</strong> is slated for a wide theatrical release on <strong>[Release Date]</strong>,
-     with planned dubbed and subtitled versions for international audiences. The producers
-     have also indicated a staggered digital release window following the theatrical run,
-     opening the way to streaming platforms and television premieres.
-   </p>
+     The film is the result of years of research, costume design, and location scouting to
+     ensure cultural authenticity and cinematic spectacle. Filming combined practical sets
+     with high-end visual effects to bring mythical landscapes and epic battles to life.
+     <strong>Ramayana</strong> is slated for a wide theatrical release on <strong>[Release Date]</strong>,
+     with planned dubbed and subtitled versions for international audiences. The producers
+     have also indicated a staggered digital release window following the theatrical run,
+     opening the way to streaming platforms and television premieres.
+   </p>
 <h2>Why This Adaptation Matters</h2>
 <p>
-     This adaptation stands out because it treats the source material as living culture
-     rather than museum-piece. It explores moral questions that remain relevant: how to
-     make hard choices under pressure, how leadership is tested by temptation, and how
-     families endure sacrifice. The film’s production design and music are crafted to
-     evoke ritual and majesty while keeping the pacing tight and emotionally resonant.
-     Whether seen as religious literature, cultural history, or timeless storytelling,
-     <em>Ramayana</em> aims to spark conversation and reflection among diverse audiences.
-   </p>
+     This adaptation stands out because it treats the source material as living culture
+     rather than museum-piece. It explores moral questions that remain relevant: how to
+     make hard choices under pressure, how leadership is tested by temptation, and how
+     families endure sacrifice. The film’s production design and music are crafted to
+     evoke ritual and majesty while keeping the pacing tight and emotionally resonant.
+     Whether seen as religious literature, cultural history, or timeless storytelling,
+     <em>Ramayana</em> aims to spark conversation and reflection among diverse audiences.
+   </p>
 <h2>Viewing Recommendations &amp; Content Notes</h2>
 <p>
-     The film contains large-scale battle sequences, dramatic confrontations, and scenes
-     of loss — parents are advised that some moments may be intense for very young
-     children. For viewers interested in cultural context, supplemental material such as
-     featurettes, director’s commentary, and an illustrated guide can enrich the
-     experience and provide historical background.
-   </p>
+     The film contains large-scale battle sequences, dramatic confrontations, and scenes
+     of loss — parents are advised that some moments may be intense for very young
+     children. For viewers interested in cultural context, supplemental material such as
+     featurettes, director’s commentary, and an illustrated guide can enrich the
+     experience and provide historical background.
+   </p>
 <h2>Final Thoughts</h2>
 <p>
-     In bringing <strong>Ramayana</strong> to life, the filmmakers attempt something rare:
-     a film that entertains while inviting audiences to reflect on the ethical threads that
-     hold societies together. With its strong performances, lush production values, and
-     reverent approach to storytelling, it promises to be a landmark cinematic event.
-     Mark your calendar for <strong>[Release Date]</strong> and prepare for an epic journey
-     that bridges ancient wisdom and modern filmmaking.
-   </p>
+     In bringing <strong>Ramayana</strong> to life, the filmmakers attempt something rare:
+     a film that entertains while inviting audiences to reflect on the ethical threads that
+     hold societies together. With its strong performances, lush production values, and
+     reverent approach to storytelling, it promises to be a landmark cinematic event.
+     Mark your calendar for <strong>[Release Date]</strong> and prepare for an epic journey
+     that bridges ancient wisdom and modern filmmaking.
+   </p>
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7746406971060998"
-     crossorigin="anonymous"></script>
+     crossorigin="anonymous"></script>
 </article><div class="ad-slot">Ad Placeholder</div>
 <article class="movie-article">
 <h1>🎬 Peddi</h1>
@@ -293,31 +292,31 @@
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/77KAnoqpoFw?si=hQDJhicJbgT7z8G4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </div>
 <p>
-<strong>Peddi</strong> is an engaging drama that blends emotion, humor, and 
-     powerful performances to create an unforgettable cinematic experience. 
-     The film tells the story of a small-town man whose journey toward self-discovery 
-     challenges his beliefs and transforms his life.
-   </p>
+<strong>Peddi</strong> is an engaging drama that blends emotion, humor, and 
+     powerful performances to create an unforgettable cinematic experience. 
+     The film tells the story of a small-town man whose journey toward self-discovery 
+     challenges his beliefs and transforms his life.
+   </p>
 <h2>Plot</h2>
 <p>
-     Set against the backdrop of rural India, Peddi follows the life of a man 
-     struggling between tradition and modern aspirations. As he confronts personal 
-     challenges, he is forced to make choices that will determine his relationships, 
-     ambitions, and place in the community.
-   </p>
+     Set against the backdrop of rural India, Peddi follows the life of a man 
+     struggling between tradition and modern aspirations. As he confronts personal 
+     challenges, he is forced to make choices that will determine his relationships, 
+     ambitions, and place in the community.
+   </p>
 <h2>Cast</h2>
 <ul style="list-style-type: none; padding-left: 0;">
-  <li><strong>Main Lead:</strong> Ram Charan — leading the rural sports action drama as the rugged hero. :contentReference[oaicite:0]{index=0}</li>
-  <li><strong>Supporting Role:</strong> Janhvi Kapoor — starring alongside him as the female lead. :contentReference[oaicite:1]{index=1}</li>
-  <li><strong>Special Appearance:</strong> Shiva Rajkumar, Jagapathi Babu, Divyendu Sharma — all appearing in key roles. :contentReference[oaicite:2]{index=2}</li>
+  <li><strong>Main Lead:</strong> Ram Charan — leading the rural sports action drama as the rugged hero. :contentReference[oaicite:0]{index=0}</li>
+  <li><strong>Supporting Role:</strong> Janhvi Kapoor — starring alongside him as the female lead. :contentReference[oaicite:1]{index=1}</li>
+  <li><strong>Special Appearance:</strong> Shiva Rajkumar, Jagapathi Babu, Divyendu Sharma — all appearing in key roles. :contentReference[oaicite:2]{index=2}</li>
 </ul>
 
 <h2>Why Watch Peddi?</h2>
 <p>
-     The film offers a perfect mix of heartfelt drama and captivating storytelling, 
-     with beautiful cinematography and a moving soundtrack. It resonates with audiences 
-     of all ages and delivers a strong social message.
-   </p>
+     The film offers a perfect mix of heartfelt drama and captivating storytelling, 
+     with beautiful cinematography and a moving soundtrack. It resonates with audiences 
+     of all ages and delivers a strong social message.
+   </p>
 </article>
 <article class="movie-article">
 <h2>🎬 Toxic – A Fairy Tale for Grown-Ups</h2>
@@ -325,31 +324,31 @@
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/0PfErHA3zzQ?si=Fdg-cgYmgJxvnUin" title="YouTube video player" width="560"></iframe> </div>
 <p>
 <strong>Toxic</strong> is a gripping drama-thriller that blends elements of mystery, emotional depth, and
-     high-stakes storytelling. Directed by an acclaimed filmmaker, the movie takes audiences on a journey through
-     the complexities of human relationships, choices, and the fine line between truth and illusion. With its
-     layered narrative, <em>Toxic</em> offers a cinematic experience that lingers in the mind long after the credits
-     roll.
-   </p>
+     high-stakes storytelling. Directed by an acclaimed filmmaker, the movie takes audiences on a journey through
+     the complexities of human relationships, choices, and the fine line between truth and illusion. With its
+     layered narrative, <em>Toxic</em> offers a cinematic experience that lingers in the mind long after the credits
+     roll.
+   </p>
 <h3>Plot Overview</h3>
 <p>
-     The story follows the life of a central character whose world begins to unravel when secrets from the past
-     start resurfacing. As unexpected events unfold, the character is forced to navigate a web of personal and
-     professional challenges. The film delves into themes of trust, betrayal, and the transformative power of
-     resilience, presenting them through an emotionally engaging and suspense-filled plot.
-   </p>
+     The story follows the life of a central character whose world begins to unravel when secrets from the past
+     start resurfacing. As unexpected events unfold, the character is forced to navigate a web of personal and
+     professional challenges. The film delves into themes of trust, betrayal, and the transformative power of
+     resilience, presenting them through an emotionally engaging and suspense-filled plot.
+   </p>
 <h3>Cast and Crew</h3>
 <p>
 <em>Toxic</em> stars talented actors who bring depth and authenticity
-     to every scene. The cinematography uses a striking visual palette to capture both the beauty and tension of the
-     film’s world. Backed by a meticulously crafted soundtrack, the movie’s sound design intensifies its emotional
-     impact.
-   </p>
+     to every scene. The cinematography uses a striking visual palette to capture both the beauty and tension of the
+     film’s world. Backed by a meticulously crafted soundtrack, the movie’s sound design intensifies its emotional
+     impact.
+   </p>
 <h3>Unique Appeal</h3>
 <p>
-     While the title may suggest darkness, <em>Toxic</em> is ultimately a story about confronting one’s fears and
-     finding light in unexpected places. It avoids sensationalism, focusing instead on meaningful storytelling that
-     resonates with audiences who enjoy intelligent, character-driven narratives.
-   </p>
+     While the title may suggest darkness, <em>Toxic</em> is ultimately a story about confronting one’s fears and
+     finding light in unexpected places. It avoids sensationalism, focusing instead on meaningful storytelling that
+     resonates with audiences who enjoy intelligent, character-driven narratives.
+   </p>
 <h3>Why You Should Watch</h3>
 <ul>
 <ul>A compelling blend of drama, suspense, and emotional storytelling.</li>
@@ -367,25 +366,25 @@
 </div>
 <p>
 <strong>G2</strong> is an upcoming action-packed spy thriller that serves as the much-awaited sequel to the
-     blockbuster hit <em>Goodachari</em>. Promising even bigger stunts, intense drama, and gripping storytelling,
-     the film continues the journey of a secret agent facing dangerous missions and personal dilemmas. With its
-     stylish cinematography and thrilling plot twists, <em>G2</em> is set to keep audiences at the edge of their
-     seats.
-   </p>
+     blockbuster hit <em>Goodachari</em>. Promising even bigger stunts, intense drama, and gripping storytelling,
+     the film continues the journey of a secret agent facing dangerous missions and personal dilemmas. With its
+     stylish cinematography and thrilling plot twists, <em>G2</em> is set to keep audiences at the edge of their
+     seats.
+   </p>
 <h3>Plot Overview</h3>
 <p>
-     Following the events of the first film, the protagonist is drawn into a high-stakes mission that could change
-     the fate of the nation. While trying to uncover a powerful international conspiracy, he must also face
-     betrayal, moral dilemmas, and a race against time. The sequel raises the stakes with more complex characters,
-     global settings, and a layered narrative.
-   </p>
+     Following the events of the first film, the protagonist is drawn into a high-stakes mission that could change
+     the fate of the nation. While trying to uncover a powerful international conspiracy, he must also face
+     betrayal, moral dilemmas, and a race against time. The sequel raises the stakes with more complex characters,
+     global settings, and a layered narrative.
+   </p>
 <h3>Cast and Crew</h3>
 <p>
 <em>G2</em> stars talented actors who bring charisma and intensity to their roles. Directed by a skilled
-     filmmaker known for fast-paced narratives, the film is supported by a top-tier crew, including an
-     award-winning cinematographer and action choreographers with expertise in realistic stunt design. The music
-     score blends pulsating beats with emotional themes to match the film’s dual tone of adrenaline and heart.
-   </p>
+     filmmaker known for fast-paced narratives, the film is supported by a top-tier crew, including an
+     award-winning cinematographer and action choreographers with expertise in realistic stunt design. The music
+     score blends pulsating beats with emotional themes to match the film’s dual tone of adrenaline and heart.
+   </p>
 <h3>Why Fans Are Excited</h3>
 <ul>
 <ul>Sequel to the popular spy thriller <em>Goodachari</em></li>
@@ -395,9 +394,9 @@
 </ul>
 <h3>Filming and Release</h3>
 <p>
-     The movie has been filmed across various exotic locations, combining real-world sets with advanced visual
-     effects. Fans can expect the film to release in cinemas worldwide, promising a grand theatrical experience.
-   </p>
+     The movie has been filmed across various exotic locations, combining real-world sets with advanced visual
+     effects. Fans can expect the film to release in cinemas worldwide, promising a grand theatrical experience.
+   </p>
 </article>
 
 
@@ -408,24 +407,24 @@
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/6_zABTe4IIg?si=Xfg5--60h1oVU7iY" title="YouTube video player" width="560"></iframe>
 </div>
 <p>
-<strong>Jana Nayagan</strong> is a gripping drama that explores the journey of an ordinary individual who rises to 
-     extraordinary heights in the fight for truth. With a blend of emotional depth, social commentary, and powerful 
-     performances, the film aims to inspire and entertain audiences of all backgrounds.
-   </p>
+<strong>Jana Nayagan</strong> is a gripping drama that explores the journey of an ordinary individual who rises to 
+     extraordinary heights in the fight for truth. With a blend of emotional depth, social commentary, and powerful 
+     performances, the film aims to inspire and entertain audiences of all backgrounds.
+   </p>
 <h3>Plot Overview</h3>
 <p>
-     Set in a bustling city, the story follows a humble man whose life is turned upside down after he becomes the 
-     unexpected voice of a community seeking justice. Facing political pressure, personal sacrifices, and intense public 
-     scrutiny, he must navigate a path filled with both triumphs and heartbreaks. The narrative balances intense moments 
-     with uplifting scenes that celebrate resilience and unity.
-   </p>
+     Set in a bustling city, the story follows a humble man whose life is turned upside down after he becomes the 
+     unexpected voice of a community seeking justice. Facing political pressure, personal sacrifices, and intense public 
+     scrutiny, he must navigate a path filled with both triumphs and heartbreaks. The narrative balances intense moments 
+     with uplifting scenes that celebrate resilience and unity.
+   </p>
 <h3>Cast and Crew</h3>
 <p>
-     The lead role is portrayed by a talented actor known for bringing sincerity and intensity to the screen. 
-     Supporting performances from seasoned artists and fresh talents enrich the film’s emotional landscape. 
-     The director’s vision combines strong storytelling with striking visuals, creating a cinematic experience that 
-     resonates long after the credits roll.
-   </p>
+     The lead role is portrayed by a talented actor known for bringing sincerity and intensity to the screen. 
+     Supporting performances from seasoned artists and fresh talents enrich the film’s emotional landscape. 
+     The director’s vision combines strong storytelling with striking visuals, creating a cinematic experience that 
+     resonates long after the credits roll.
+   </p>
 <h3>Highlights</h3>
 <ul>
 <ul>Emotionally charged performances that connect with audiences.</li>
@@ -442,24 +441,24 @@
 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" frameborder="0" height="315" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube-nocookie.com/embed/3ZVxZ1KcZU8?si=9OIavRbAXUPCH-Q7" title="YouTube video player" width="560"></iframe>
 </div>
 <p>
-<strong>Mardaani 3</strong> continues the gripping saga of fearless police officer Shivani Shivaji Roy. 
-     Known for tackling hard-hitting subjects, the series has earned praise for its realistic portrayal of 
-     crime investigations and strong female-led narratives. This latest installment brings a new case that 
-     pushes Shivani’s courage, intelligence, and determination to new heights.
-   </p>
+<strong>Mardaani 3</strong> continues the gripping saga of fearless police officer Shivani Shivaji Roy. 
+     Known for tackling hard-hitting subjects, the series has earned praise for its realistic portrayal of 
+     crime investigations and strong female-led narratives. This latest installment brings a new case that 
+     pushes Shivani’s courage, intelligence, and determination to new heights.
+   </p>
 <h3>Plot Overview</h3>
 <p>
-     In <em>Mardaani 3</em>, Shivani faces a dangerous criminal network operating in the shadows of society. 
-     As she digs deeper into the case, she uncovers layers of corruption, manipulation, and organized crime. 
-     The film blends thrilling investigative sequences with emotional storytelling, keeping viewers hooked 
-     until the final reveal. It’s not just a battle for justice—it’s a personal fight against fear and oppression.
-   </p>
+     In <em>Mardaani 3</em>, Shivani faces a dangerous criminal network operating in the shadows of society. 
+     As she digs deeper into the case, she uncovers layers of corruption, manipulation, and organized crime. 
+     The film blends thrilling investigative sequences with emotional storytelling, keeping viewers hooked 
+     until the final reveal. It’s not just a battle for justice—it’s a personal fight against fear and oppression.
+   </p>
 <h3>Cast and Crew</h3>
 <p>
-     Rani Mukerji once again delivers a powerful performance, portraying Shivani with intensity and authenticity. 
-     The film is directed with a focus on realism, ensuring that every scene feels grounded and impactful. 
-     The supporting cast adds depth to the narrative, with each character contributing to the unfolding mystery.
-   </p>
+     Rani Mukerji once again delivers a powerful performance, portraying Shivani with intensity and authenticity. 
+     The film is directed with a focus on realism, ensuring that every scene feels grounded and impactful. 
+     The supporting cast adds depth to the narrative, with each character contributing to the unfolding mystery.
+   </p>
 <h3>Highlights</h3>
 <ul>
 <ul>A strong, determined female lead in a high-stakes police drama.</li>
@@ -469,14 +468,14 @@
 </ul>
 </article>
 <section class="comments">
-  <h2>Leave a Comment</h2>
-  <form id="comment-form">
-    <input type="text" id="username" placeholder="Your Name" required />
-    <textarea id="comment" placeholder="Your Comment" required></textarea>
-    <button type="submit">Post Comment</button>
-  </form>
-  <p id="comments-status" style="color:gray;font-style:italic;">No comments yet.</p>
-       <ul id="comments-list"></ul>
+  <h2>Leave a Comment</h2>
+  <form id="comment-form">
+    <input type="text" id="username" placeholder="Your Name" required />
+    <textarea id="comment" placeholder="Your Comment" required></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+  <p id="comments-status" style="color:gray;font-style:italic;">No comments yet.</p>
+       <ul id="comments-list"></ul>
 </section>
 
 </section>
@@ -494,12 +493,9 @@
 </main>
 <footer>
 <p>© 2025 Jutech Movies. All rights reserved.</p>
-  | <a href="privacy.html">Privacy Policy</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a> | <a href="terms.html">Terms of Service</a></footer>
+  | <a href="privacy.html">Privacy Policy</a> | <a href="about.html">About Us</a> | <a href="contact.html">Contact</a> | <a href="terms.html">Terms of Service</a></footer>
 
-  
+  
 
 </body>
 </html>
-
-
-
